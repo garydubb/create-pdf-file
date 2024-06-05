@@ -52,16 +52,9 @@ export default async function generatePdf(req, res) {
 
 	try {
 		// Launch a new browser instance
-		const browser = await playwright.chromium.launch({
-			args: [...chromium.args, "--font-render-hinting=none"], // This way fix rendering issues with specific fonts
-			executablePath:
-				process.env.NODE_ENV === "production"
-					? await chromium.executablePath
-					: "C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe",
-			headless:
-				process.env.NODE_ENV === "production"
-					? chromium.headless
-					: true,
+		const browser = await puppeteer.launch({
+			headless: "new",
+			args: ["--no-sandbox", "--disable-setuid-sandbox"],
 		});
 		const page = await browser.newPage();
 		console.log("htmlContent", page);
