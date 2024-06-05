@@ -56,6 +56,7 @@ export default async function generatePdf(req, res) {
 			headless: "new",
 			args: ["--no-sandbox", "--disable-setuid-sandbox"],
 		});
+		console.log("browserg", browser);
 		const page = await browser.newPage();
 		console.log("htmlContent", page);
 		// Set the content of the page
